@@ -20,16 +20,18 @@
   <form method="get" action="">
     <!-- method="傳送方式" action="傳給誰，沒設定就傳給自己"-->
     <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
+      <!-- label的功能>>FOCUSE哪個ID -->
+      <label for="email">Email address</label>
       <input type="text" class="form-control" id="email" name="email">
       <small id="emailHelp" class="form-text text-muted"></small>
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="Password1" name="Password1">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password">
     </div>
     <div class="form-group form-check">
       <input type="checkbox" class="form-check-input" id="Check1" name="Check1">
+        <!-- for的功能>>FOCUSE哪個ID -->
       <label class="form-check-label" for="Check1">Check me out</label>
       <!-- 相關選擇方式請看mmmh57-php-0406-am(https://youtu.be/N0HmwxJJ4b4?t=1536) -->
     </div>
