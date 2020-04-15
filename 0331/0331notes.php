@@ -49,6 +49,12 @@ foreach( $arl as $i ){
 <?php
 //關聯式陣列 => 胖箭頭       //"->"瘦箭頭等於JS的"."(誰誰誰"的"啥啥啥啥)
 //一個KEY  => 對應一個值
+
+/*JS箭頭函式:
+const func = (x) => x + 1
+const func = function (x) { return x + 1 }
+*/
+
 //PHP字串一定要標''
 
 $try = [
@@ -67,5 +73,19 @@ foreach( $try as $k=>$i ){
 
 //複製的部分 slice()是將內容一個一個切出來
 //PHP的等號"=" 是將值複製一份給他不是參照(得到後就$A固定了)(JS是參照)，如果PHP要參照是用$a = &$b(得到後會$A依照$B改變)
+
+?>
+
+<?php 
+//php 的 function 不會往外找變數 要用外面的變數要用global宣告
+//不要這樣用!!!!!!!!!!!!!!
+
+$aaaaaaa=100;
+$bbbbbbb=2000;
+function YOOOO(){
+    global $aaaaaaa;
+    echo $aaaaaaa;
+}
+
 
 ?>
