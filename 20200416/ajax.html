@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="form-group">
+                    <label for="">選擇地區</label>
+                    <select class="form-control" name="" id="countySelect">
+                        <option value="">全部</option>
+                        <option value="台北市">台北市</option>
+                        <option value="台中市">台中市</option>
+                    </select>
+                </div>
+                <table class="table" id="table">
+                    <thead>
+                        <tr>
+                            <th>名字</th>
+                            <th>地址</th>
+                            <th>電話</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableContent"></tbody>
+                </table>
+            </div>
+        </div>
+    </div><!-- container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        let obj = {
+            name: "北一女",
+            address: "台北市重慶北路1號",
+            phone: "02-22222222"
+        }
+
+        // console.log(obj.name)
+
+        // let schools=["北一女", "建國中學", "成功高中"];
+        // console.log(schools[0])
+
+        let schools = [
+            {
+                city: "台北市",
+                name: "北一女",
+                address: "台北市重慶北路1號",
+                phone: "02-22222222"
+            },
+            {
+                city: "台北市",
+                name: "建國中學",
+                address: "台北市南海路1號",
+                phone: "02-22000000"
+            },
+            {
+                city: "台北市",
+                name: "成功中學",
+                address: "台北市濟南路1號",
+                phone: "02-22000111"
+            },
+            {
+                city: "台中市",
+                name: "台中女中",
+                address: "台中市濟南路1號",
+                phone: "04-22000111"
+            },
+            {
+                city: "台中市",
+                name: "台中一中",
+                address: "台中市一中街1號",
+                phone: "04-22000111"
+            }
+        ];
+        let schoolFilter = schools.filter(function (school) {
+            return school.city == "台北市";
+        })
+        // console.log(schoolFilter)
+        // console.log(schools[0])
+        for (let i = 0; i < schools.length; i++) {
+            // console.log(schools[i].name)
+            let schoolData = `<tr>
+            <td>${schools[i].name}</td>
+            <td>${schools[i].address}</td>
+            <td>${schools[i].phone}</td>
+            </tr>`
+            $("#tableContent").append(schoolData);
+        }
+
+        $("#countySelect").change(function () {
+            let county = $(this).val();
+            console.log(county)
+            let schoolFilter = schools.filter(function (school) {
+                return school.city == county;
+            })
+            console.log(schoolFilter)
+            $("#tableContent").empty();
+            if (county != "") {
+                for (let i = 0; i < schoolFilter.length; i++) {
+                    // console.log(schools[i].name)
+                    let schoolData = `<tr>
+                    <td>${schoolFilter[i].name}</td>
+                    <td>${schoolFilter[i].address}</td>
+                    <td>${schoolFilter[i].phone}</td>
+                    </tr>`
+                    $("#tableContent").append(schoolData);
+                }
+            } else {
+                for (let i = 0; i < schools.length; i++) {
+                    // console.log(schools[i].name)
+                    let schoolData = `<tr>
+                    <td>${schools[i].name}</td>
+                    <td>${schools[i].address}</td>
+                    <td>${schools[i].phone}</td>
+                    </tr>`
+                    $("#tableContent").append(schoolData);
+                }
+            }
+        })
+
+
+        let mapSchools = [{
+            map: "新加坡",
+            lng: "103.806496",
+            lat: "1.349736",
+            schools: [
+                {
+                    "id": "10236",
+                    "school_id": "176",
+                    "name": "新加坡澳洲國際學校",
+                    "name_origin": "Australian International School in Singapore",
+                    "name_en": "Australian International School in Singapore",
+                    "setup": "1993",
+                    "location": "central",
+                    "locationName": "中區社區",
+                    "locationNameEn": "Central CDC",
+                    "locationNameOrigin": "Central CDC",
+                    "code": "ais",
+                    "img": "176_DSC_9924.jpg",
+                    "picture": "https://unimap.wingzero.tw/uniform-sg/central/ais/176_DSC_9924.jpg",
+                    "show": "1",
+                    "address": "Australian International School in Singapore, 1 Lorong Chuan Singapore 556 818",
+                    "lng": "103.85946769999998",
+                    "lat": "1.3481584"
+                },
+                {
+                    "id": "1702",
+                    "school_id": "175",
+                    "name": "淡滨尼初级学院",
+                    "name_origin": "Tampines Junior College",
+                    "name_en": "Tampines Junior College",
+                    "setup": "0",
+                    "location": "north-east",
+                    "locationName": "東北社區",
+                    "locationNameEn": "NorthEast CDC",
+                    "locationNameOrigin": "NorthEast CDC",
+                    "code": "tpjc",
+                    "img": "f77fc29f75ac736469567e55f5b89528.jpg",
+                    "picture": "https://unimap.wingzero.tw/uniform-sg/north-east/tpjc/f77fc29f75ac736469567e55f5b89528.jpg",
+                    "show": "1",
+                    "address": "2 Tampines Ave 9, 新加坡 529564",
+                    "lng": "103.95638807738487",
+                    "lat": "1.3574246609782397"
+                },
+                {
+                    "id": "1701",
+                    "school_id": "174",
+                    "name": "實仁中學",
+                    "name_origin": "Serangoon Secondary School",
+                    "name_en": "Serangoon Secondary School",
+                    "setup": "0",
+                    "location": "north-east",
+                    "locationName": "東北社區",
+                    "locationNameEn": "NorthEast CDC",
+                    "locationNameOrigin": "NorthEast CDC",
+                    "code": "serangoonsec",
+                    "img": "91d367d367204071c45129972f3fa81b.jpg",
+                    "picture": "https://unimap.wingzero.tw/uniform-sg/north-east/serangoonsec/91d367d367204071c45129972f3fa81b.jpg",
+                    "show": "1",
+                    "address": "11 Upper Serangoon View Rd, Singapore 534237",
+                    "lng": "103.90282273624575",
+                    "lat": "1.3746820922207865"
+                },
+                {
+                    "id": "1700",
+                    "school_id": "173",
+                    "name": "尚志中學",
+                    "name_origin": "Chai Chee Secondary School",
+                    "name_en": "Chai Chee Secondary School",
+                    "setup": "0",
+                    "location": "north-east",
+                    "locationName": "東北社區",
+                    "locationNameEn": "NorthEast CDC",
+                    "locationNameOrigin": "NorthEast CDC",
+                    "code": "ccss",
+                    "img": "a5ab2634812bf2716dc8bafa6131db4d.jpg",
+                    "picture": "https://unimap.wingzero.tw/uniform-sg/north-east/ccss/a5ab2634812bf2716dc8bafa6131db4d.jpg",
+                    "show": "1",
+                    "address": "5, Sennett Road, Singapore 466781",
+                    "lng": "103.9382885",
+                    "lat": "1.315905"
+                },
+            ]
+        }]
+
+        console.log(mapSchools[0]["schools"]);
+    </script>
+</body>
+
+</html>
